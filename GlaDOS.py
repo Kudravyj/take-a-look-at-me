@@ -37,7 +37,6 @@ commands = ['привет', 'открой файл', 'выключи комп', 
             'открой стату', 'покажи cтатистику', 'я хочу расслабиться', 'переведи', 'на будущее', 'что планируется']
 
 # раздел описания функций комманд
-os.startfile(r'C:\Users\User\Downloads\GLaDOS-248565.wav')
 
 servo = board.get_pin('d:8:s')
 def pri_com():  # выводит на экран историю запросов
@@ -135,7 +134,7 @@ def arduino2():
                     board.digital[13].write(0)
                     board.digital[12].write(0)
                     board.digital[11].write(0)
-                    cv2.destroyAllWindows()
+                    cv2.destroyAllWindows() 
                     return
                 if name == 'Kasia':
                     os.startfile(r'C:\Users\User\Downloads\GLaDOS-320018.wav')
@@ -202,17 +201,18 @@ def check_searching():  # проверяет нужно-ли искать в и�
 
 def arduino():
 
-    board.digital[10].write(1)
+    board.digital[13].write(1)
+    servo.write(180)
 
 def arduino1():
-    board.digital[10].write(0)
+    board.digital[13].write(0)
+    servo.write(0)
 
 
 
 def arduino3():
     servo.write(0)
     time.sleep(2)
-    os.startfile(r'C:\Users\User\Downloads\GLaDOS-271939.wav')
 
 def clear_task():  # удаляет ключевые слова
     global text, ndel
@@ -223,10 +223,7 @@ def clear_task():  # удаляет ключевые слова
 
 def hello():  # функция приветствия
     global engine
-    c = os.startfile(r'C:\Users\User\Downloads\GLaDOS-308343.wav')
-    v = os.startfile(r'C:\Users\User\Downloads\GLaDOS-308343.wav')
-    z = [c, v]
-    x = random.choice(z)
+
 
 
 
@@ -302,6 +299,7 @@ def check_translate():
             word = word.replace('перевод', '').strip()
             word = word.replace('слово', '').strip()
             word = word.replace('слова', '').strip()
+            word = word.replace('как', '').strip()
             engine.say('хорошо буду звать тебя как' + word)
             print(word)
             tr = 1
@@ -351,7 +349,7 @@ def cmd_exe():
     check_searching()
     if (text in cmds):
         if (text != 'привет') & (text != 'пока') & (text != 'покажи список команд') & (text != "называй"):
-            os.startfile(r'C:\Users\User\Downloads\GLaDOS-261794.wav')
+            print("hello")
         cmds[text]()
     elif text == 'глэдос':
         pass
